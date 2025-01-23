@@ -8,6 +8,7 @@ while True:
             player1_name = input("Enter name for player 1 - playing with X-s:\n")
             player2_name = input("Enter name for player 2 - playing with 0-s:\n")
             sarasas = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
             while True:
                 spausdinam(sarasas)
                 try:
