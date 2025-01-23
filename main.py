@@ -11,7 +11,7 @@ while True:
             while True:
                 spausdinam(sarasas)
                 try:
-                    choice_X = int(input(f"{player1_name}: choose the available field to place X: "))
+                    choice_X = int(input(f"{player1_name}: choose an available field to place X: "))
                     if type(sarasas[choice_X - 1]) is int and choice_X != 0:
                         sarasas[choice_X - 1] = "X"
                         if check_X(sarasas) is True:
@@ -25,7 +25,7 @@ while True:
                         continue
                     try:
                         spausdinam(sarasas)
-                        choice_0 = int(input(f"{player2_name}: choose the available field to place 0: "))
+                        choice_0 = int(input(f"{player2_name}: choose an available field to place 0: "))
                         if type(sarasas[choice_0 - 1]) is int and choice_0 != 0:
                             sarasas[choice_0 - 1] = "0"
                             if check_0(sarasas) is True:
