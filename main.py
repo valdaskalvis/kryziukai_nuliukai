@@ -12,7 +12,7 @@ while True:
                 spausdinam(sarasas)
                 try:
                     choice_X = int(input(f"{player1_name}: choose the available field to place X: "))
-                    if type(sarasas[choice_X - 1]) is int and sarasas[choice_X -1] <= 9 and sarasas[choice_X -1] >= 1:
+                    if type(sarasas[choice_X - 1]) is int and choice_X != 0:
                         sarasas[choice_X - 1] = "X"
                         if check_X(sarasas) is True:
                             print(f"{player1_name} won!\nPlay again?")
@@ -20,35 +20,25 @@ while True:
                         if check_draw(sarasas) is True:
                             print("It's a draw!\nPlay again?")
                             break
-                        spausdinam(sarasas)
-                        try:
-                            choice_0 = int(input(f"{player2_name}: choose the available field to place 0: "))
-                            if type(sarasas[choice_0 - 1]) is int and 1 <= sarasas[choice_0 - 1] <= 9:
-                                sarasas[choice_0 - 1] = "0"
-                                if check_0(sarasas) is True:
-                                    print(f"{player2_name} won!\nPlay again?")
-                                    break
-                            else:
-                                print("Invalid choice. Try again.\n")
-
-                        except ValueError:
-                            print("Invalid choice. Try again.\n")
                     else:
                         print("Invalid choice. Try again.\n")
-                except ValueError:
+                        continue
+                    try:
+                        spausdinam(sarasas)
+                        choice_0 = int(input(f"{player2_name}: choose the available field to place 0: "))
+                        if type(sarasas[choice_0 - 1]) is int and choice_0 != 0:
+                            sarasas[choice_0 - 1] = "0"
+                            if check_0(sarasas) is True:
+                                print(f"{player2_name} won!\nPlay again?")
+                                break
+                        else:
+                            print("Invalid choice. Try again.\n")
+                            continue
+                    except IndexError:
+                        print("Invalid choice. Try again.\n")
+                        continue
+                except IndexError:
                     print("Invalid choice. Try again.\n")
-                    # spausdinam(sarasas)
-                    # try:
-                    #     choice_0 = int(input("Choose the available field to place 0: "))
-                    #     if type(sarasas[choice_0 - 1]) is int and 1 <= sarasas[choice_0 -1] <= 9:
-                    #         sarasas[choice_0 - 1] = "0"
-                    #         if check_0(sarasas) is True:
-                    #             print(f"{player2_name} won")
-                    #             break
-                    #     else:
-                    #         print("Invalid choice. Try again.\n")
-                    # except ValueError:
-                    #     print("Invalid choice. Try again.\n")
 
         case 2:
             player_vs_monkey_name = input("Enter player name. You will be playing with X-s.\n")
