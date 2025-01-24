@@ -3,7 +3,7 @@ from functions.check import check_X, check_0, check_draw
 from random import randrange
 
 while True:
-    choice = int(input("1 - start two player game\n2 - start game against Monkey\n3 - start game vs and AI opponent\n4 - see scores\n0 - exit\n"))
+    choice = int(input("1 - start two player game\n2 - start game against Monkey\n3 - start game vs and AI opponent\n0 - exit\n"))
     match choice:
         case 1:
             game_on = True
@@ -101,8 +101,7 @@ while True:
         case 3:
             player_vs_ai_name = input("Enter player name. You will be playing with X-s.\n")
             print("You will be playing against an AI opponent, hopefully it'll be a bit of a challenge!")
-        case 4:
-            print("scorelist:")
+
         case 0:
             print("Game over.")
             break
