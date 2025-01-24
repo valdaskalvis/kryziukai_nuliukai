@@ -1,6 +1,8 @@
 from functions.print import spausdinam
 from functions.check import check_X, check_0, check_draw
 from random import randrange
+from functions.ai_logic import ai_turn
+from time import sleep
 
 while True:
     choice = int(input("1 - start two player game\n2 - start game against Monkey\n3 - start game vs and AI opponent\n0 - exit\n"))
@@ -78,6 +80,8 @@ while True:
                         continue
                     spausdinam(sarasas)
                     print("Monkey smashes the keyboard!")
+                    # monkey takes some time:
+                    sleep(2)
                     # monkey turn: choose an available field at random, update the field and check for end of game scenarios
                     monkey_turn = True
                     while monkey_turn:
@@ -98,9 +102,39 @@ while True:
                 except (IndexError,ValueError):
                     print("Invalid choice. Try again.")
 
+        # to be implemented
         case 3:
-            player_vs_ai_name = input("Enter player name. You will be playing with X-s.\n")
+            player_vs_ai_name = input("You will be playing with X-s.\n")
             print("You will be playing against an AI opponent, hopefully it'll be a bit of a challenge!")
+            ai_game_on = True
+            sarasas = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            while ai_game_on:
+                spausdinam(sarasas)
+                try:
+                    # player turn: choose an available field, upon correct choice - update the field and check for end of game scenarios
+                    choice_X = int(input(f"Please choose an available field to place X: "))
+                    if type(sarasas[choice_X - 1]) is int and choice_X != 0:
+                        sarasas[choice_X - 1] = "X"
+                        if check_X(sarasas) is True:
+                            spausdinam(sarasas)
+                            print(f"You won!\nPlay again?\n")
+                            break
+                        if check_draw(sarasas) is True:
+                            spausdinam(sarasas)
+                            print("It's a draw!\nPlay again?\n")
+                            break
+                    else:
+                        print("Invalid choice. Try again.")
+                        continue
+                    spausdinam(sarasas)
+                    print("AI turn.")
+                    # AI turn: choose an available field, update the field and check for end of game scenarios
+                    ai_turn(sarasas)
+                    if check_0(sarasas) is True:
+                        spausdinam(sarasas)
+                        print(f"AI won.\nPlay again?\n")
+                except (IndexError, ValueError):
+                    print("Invalid choice. Try again.")
 
         case 0:
             print("Game over.")
