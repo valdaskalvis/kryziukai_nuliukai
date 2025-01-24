@@ -1,5 +1,5 @@
 
-
+# function for checking all possible winning lanes for player with X-s
 def check_X(sarasas):
     hor_1 = [sarasas[0], sarasas[1], sarasas[2]]
     hor_2 = [sarasas[3], sarasas[4], sarasas[5]]
@@ -18,6 +18,7 @@ def check_X(sarasas):
         if lane_score == 3:
             return True
 
+# function for checking all possible winning lanes for player with 0-s
 def check_0(sarasas):
     hor_1 = [sarasas[0], sarasas[1], sarasas[2]]
     hor_2 = [sarasas[3], sarasas[4], sarasas[5]]
@@ -36,6 +37,7 @@ def check_0(sarasas):
         if lane_score == 3:
             return True
 
+# function for checking for draw
 def check_draw(sarasas):
     filled_values = 0
     for x in range (9):
