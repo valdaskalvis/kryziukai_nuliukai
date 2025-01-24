@@ -12,7 +12,7 @@ while True:
             player1_name = input("Enter name for player 1 - playing with X-s: ")
             player2_name = input("Enter name for player 2 - playing with 0-s: ")
             # creating the list array for available fields with numbers to make choosing them easier
-            sarasas = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            sarasas: list[int | str]  = [1, 2, 3, 4, 5, 6, 7, 8, 9]
             # "game_on" switch to handle the issue of the loop still running when player2 wins
             while game_on:
                 spausdinam(sarasas)
@@ -59,7 +59,7 @@ while True:
             monkey_game_on = True
             print("You will be playing with X-s.")
             print("You will be playing against an opponent of a very limited intelligence. Would be a shame to lose here!")
-            sarasas = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            sarasas: list[int | str] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
             while monkey_game_on:
                 spausdinam(sarasas)
                 try:
@@ -104,10 +104,10 @@ while True:
 
         # to be implemented
         case 3:
-            player_vs_ai_name = input("You will be playing with X-s.\n")
+            print("You will be playing with X-s.")
             print("You will be playing against an AI opponent, hopefully it'll be a bit of a challenge!")
             ai_game_on = True
-            sarasas = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            sarasas: list[int | str] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
             while ai_game_on:
                 spausdinam(sarasas)
                 try:
@@ -132,7 +132,8 @@ while True:
                     ai_turn(sarasas)
                     if check_0(sarasas) is True:
                         spausdinam(sarasas)
-                        print(f"AI won.\nPlay again?\n")
+                        print(f"AI won!\nPlay again?\n")
+                        ai_game_on = False
                 except (IndexError, ValueError):
                     print("Invalid choice. Try again.")
 
