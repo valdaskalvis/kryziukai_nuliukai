@@ -81,7 +81,7 @@ while True:
                     spausdinam(sarasas)
                     print("Monkey smashes the keyboard!")
                     # monkey takes some time:
-                    sleep(2)
+                    sleep(1)
                     # monkey turn: choose an available field at random, update the field and check for end of game scenarios
                     monkey_turn = True
                     while monkey_turn:
@@ -102,7 +102,6 @@ while True:
                 except (IndexError,ValueError):
                     print("Invalid choice. Try again.")
 
-        # to be implemented
         case 3:
             print("You will be playing with X-s.")
             print("You will be playing against an AI opponent, hopefully it'll be a bit of a challenge!")
@@ -140,6 +139,8 @@ while True:
         case 0:
             print("Game over.")
             break
+        case _:
+            print("Invalid choice. Try again!")
 
 
 

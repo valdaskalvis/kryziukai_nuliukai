@@ -132,24 +132,25 @@ def ai_turn(sarasas):
             if isinstance(sarasas[6], int):
                 sarasas[6] = "0"
             completed = True
-    # barring the above, choose available field in a lane with one 0 and zero X-s:
-    # if not completed:
-    #     choice_0 = 0
-    #     for lane in lines:
-    #         lane_x = 0
-    #         lane_score = 0
-    #         for x in range(3):
-    #             if lane[x] == "0":
-    #                 lane_score += 1
-    #             elif lane[x] == "X":
-    #                 lane_x += 1
-    #             else:
-    #                 choice_0 = lane[x]
-    #             if lane_score == 1 and lane_x == 0:
-    #                 print(lane[x])
-    #                 choice_0 = "0"
-    #                 completed = True
-    # if all others are false, choose a field at random ("monkey" option):
+    # best X-s player strategy for turn 2 is placing his second x diagonally in the opposite corner from the first one.
+    # to counter that, the AI must choose an appropriate non-corner field, otherwise it loses:
+    if not completed:
+        if sarasas[4] != "X" and sarasas.count("X") == 2 and diag_1.count("X") == 2 and diag_1.count("0") == 1:
+            sarasas[7] = "0"
+            completed = True
+        elif sarasas[4] != "X" and sarasas.count("X") == 2 and diag_2.count("X") == 2 and diag_2.count("0") == 1:
+            sarasas[5] = "0"
+            completed = True
+    # however, if we're on a second turn and player has 2 X-s in the same diagonal as AI's 0,
+    # AI must choose a corner field
+    if not completed:
+        if sarasas[4] == "X" and sarasas.count("X") == 2 and diag_1.count("X") == 2 and diag_1.count("0") == 1:
+            sarasas[2] = "0"
+            completed = True
+        elif sarasas[4] == "X" and sarasas.count("X") == 2 and diag_2.count("X") == 2 and diag_2.count("0") == 1:
+            sarasas[0] = "0"
+            completed = True
+    # there's a random function just in case all options above do not apply ("monkey" option):
     if not completed:
         monkey_turn = True
         while monkey_turn:
@@ -163,4 +164,8 @@ def ai_turn(sarasas):
                     continue
             except ValueError:
                 continue
-
+    # the only strategy the player can employ that allows to occasionally win is to start with a corner X,
+    # then respond with non-adjacent edge field - in this case the "AI" will respond at random and may lose.
+    # this is left here as a random win possibility because the "perfect" never losing AI is absolutely unfun.
+    # alternately a proper AI response could be coded here, but a, say, 10% chance of a random turn choice at
+    # any point could be introduced to leave the player a chance to win.
