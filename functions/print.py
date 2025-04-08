@@ -1,4 +1,4 @@
-# Printing the constantly updated game fields with an empty line to make it visually cleaner
+# Printing the constantly updated game fields with an empty line to make it visually cleaner.
 
 def spausdinam(sarasas):
     print()

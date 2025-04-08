@@ -7,17 +7,18 @@ from time import sleep
 while True:
     choice = int(input("1 - start two player game\n2 - start game against Monkey\n3 - start game vs and AI opponent\n0 - exit\n"))
     match choice:
+        # Two player game.
         case 1:
             game_on = True
             player1_name = input("Enter name for player 1 - playing with X-s: ")
             player2_name = input("Enter name for player 2 - playing with 0-s: ")
-            # creating the list array for available fields with numbers to make choosing them easier
+            # Creating the list array for available fields with numbers to make choosing them easier.
             sarasas: list[int | str]  = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-            # "game_on" switch to handle the issue of the loop still running when player2 wins
+            # "Game_on" switch to handle the issue of the loop still running when player2 wins.
             while game_on:
                 spausdinam(sarasas)
                 try:
-                    # player1 turn: choose an available field, upon correct choice - update the field and check for end of game scenarios
+                    # Player1 turn: choose an available field, upon correct choice - update the field and check for end of game scenarios.
                     choice_X = int(input(f"{player1_name}: choose an available field to place X: "))
                     if type(sarasas[choice_X - 1]) is int and choice_X != 0:
                         sarasas[choice_X - 1] = "X"
@@ -32,12 +33,12 @@ while True:
                     else:
                         print("Invalid choice. Try again.")
                         continue
-                    # Below is the player 2 part with a "player2_turn" switch for a successful turn
+                    # Below is the player2 part with a "player2_turn" switch for a successful turn.
                     player2_turn = True
                     while player2_turn:
                         try:
                             spausdinam(sarasas)
-                            # player2 turn: choose an available field, upon correct choice - update the field and check for end of game scenarios
+                            # Player2 turn: choose an available field, upon correct choice - update the field and check for end of game scenarios.
                             choice_0 = int(input(f"{player2_name}: choose an available field to place 0: "))
                             if type(sarasas[choice_0 - 1]) is int and choice_0 != 0:
                                 sarasas[choice_0 - 1] = "0"
@@ -55,6 +56,7 @@ while True:
                 except (IndexError,ValueError):
                     print("Invalid choice. Try again.")
 
+        # Single player vs "monkey" - an Ai opponent with random field choices.
         case 2:
             monkey_game_on = True
             print("You will be playing with X-s.")
@@ -63,7 +65,7 @@ while True:
             while monkey_game_on:
                 spausdinam(sarasas)
                 try:
-                    # player turn: choose an available field, upon correct choice - update the field and check for end of game scenarios
+                    # Player turn: choose an available field, upon correct choice - update the field and check for end of game scenarios.
                     choice_X = int(input(f"Please choose an available field to place X: "))
                     if type(sarasas[choice_X - 1]) is int and choice_X != 0:
                         sarasas[choice_X - 1] = "X"
@@ -80,9 +82,9 @@ while True:
                         continue
                     spausdinam(sarasas)
                     print("Monkey smashes the keyboard!")
-                    # monkey takes some time:
+                    # Monkey takes some time:
                     sleep(1)
-                    # monkey turn: choose an available field at random, update the field and check for end of game scenarios
+                    # Monkey turn: choose an available field at random, update the field and check for end of game scenarios.
                     monkey_turn = True
                     while monkey_turn:
                         try:
@@ -102,6 +104,7 @@ while True:
                 except (IndexError,ValueError):
                     print("Invalid choice. Try again.")
 
+        # Third option: single player vs a proper AI opponent.
         case 3:
             print("You will be playing with X-s.")
             print("You will be playing against an AI opponent, hopefully it'll be a bit of a challenge!")
@@ -110,7 +113,7 @@ while True:
             while ai_game_on:
                 spausdinam(sarasas)
                 try:
-                    # player turn: choose an available field, upon correct choice - update the field and check for end of game scenarios
+                    # Player turn: choose an available field, upon correct choice - update the field and check for end of game scenarios.
                     choice_X = int(input(f"Please choose an available field to place X: "))
                     if type(sarasas[choice_X - 1]) is int and choice_X != 0:
                         sarasas[choice_X - 1] = "X"
@@ -127,7 +130,7 @@ while True:
                         continue
                     spausdinam(sarasas)
                     print("AI turn.")
-                    # AI turn: choose an available field, update the field and check for end of game scenarios
+                    # AI turn: choose an available field, update the field and check for end of game scenarios.
                     ai_turn(sarasas)
                     if check_0(sarasas) is True:
                         spausdinam(sarasas)

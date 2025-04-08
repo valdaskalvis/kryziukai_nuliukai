@@ -11,19 +11,22 @@ def ai_turn(sarasas):
     diag_1 = [sarasas[0], sarasas[4], sarasas[8]]
     diag_2 = [sarasas[2], sarasas[4], sarasas[6]]
     lines = [hor_1, hor_2, hor_3, vert_1, vert_2, vert_3, diag_1, diag_2]
-    # note that this is an unwieldy and far from the best solution, but at this point I didn't want to rewrite everything with a dictionary array.
-    # setting a condition to prevent running unnecessary parts of the function:
+
+    # Setting a condition to prevent running unnecessary parts of the function.
     completed = False
-    # first we check if the center field is available as it is the best choice in the game while playing 0-s:
+
+    # First we check if the center field is available as it is the best choice in the game while playing 0-s.
     if sarasas[4] != "X" and sarasas[4] != "0":
         sarasas[4] = "0"
         completed = True
-    # then we answer with 0 in the corner if the starting player chooses center field as his starting one:
+
+    # Then we answer with 0 in the corner if the starting player chooses center field as their starting one.
     if not completed:
         if sarasas.count("X") == 1:
             sarasas[0] = "0"
             completed = True
-    # then we search for a winning line if any (needs to have two 0-s and zero X-s):
+
+    # Next we search for a winning line if any (needs to have two 0-s and zero X-s).
     if not completed:
         if hor_1.count("0") == 2 and hor_1.count("X") == 0:
             sarasas[0] = "0"
@@ -65,8 +68,8 @@ def ai_turn(sarasas):
             sarasas[4] = "0"
             sarasas[6] = "0"
             completed = True
-    # if there's no winning line, check for possible player wins next turn and prevent those:
-    # this is where going with a list array starts hurting...
+
+    # If there's no winning line, check for possible player wins next turn and prevent those.
     if not completed:
         if hor_1.count("0") == 0 and hor_1.count("X") == 2:
             if isinstance(sarasas[0], int):
@@ -132,8 +135,9 @@ def ai_turn(sarasas):
             if isinstance(sarasas[6], int):
                 sarasas[6] = "0"
             completed = True
-    # best X-s player strategy for turn 2 is placing his second x diagonally in the opposite corner from the first one.
-    # to counter that, the AI must choose an appropriate non-corner field, otherwise it loses:
+
+    # Best X-s player strategy for turn 2 is placing his second x diagonally in the opposite corner from the first one.
+    # To counter that, the AI must choose an appropriate non-corner field, otherwise it loses.
     if not completed:
         if sarasas[4] != "X" and sarasas.count("X") == 2 and diag_1.count("X") == 2 and diag_1.count("0") == 1:
             sarasas[7] = "0"
@@ -141,8 +145,9 @@ def ai_turn(sarasas):
         elif sarasas[4] != "X" and sarasas.count("X") == 2 and diag_2.count("X") == 2 and diag_2.count("0") == 1:
             sarasas[5] = "0"
             completed = True
-    # however, if we're on a second turn and player has 2 X-s in the same diagonal as AI's 0,
-    # AI must choose a corner field
+
+    # However, if we're on a second turn and player has 2 X-s in the same diagonal as AI's 0,
+    # AI must choose a corner field.
     if not completed:
         if sarasas[4] == "X" and sarasas.count("X") == 2 and diag_1.count("X") == 2 and diag_1.count("0") == 1:
             sarasas[2] = "0"
@@ -150,7 +155,8 @@ def ai_turn(sarasas):
         elif sarasas[4] == "X" and sarasas.count("X") == 2 and diag_2.count("X") == 2 and diag_2.count("0") == 1:
             sarasas[0] = "0"
             completed = True
-    # there's a random function just in case all options above do not apply ("monkey" option):
+
+    # There's a random function just in case all options above do not apply ("monkey" option).
     if not completed:
         monkey_turn = True
         while monkey_turn:
