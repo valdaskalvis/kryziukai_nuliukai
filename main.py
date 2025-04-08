@@ -1,7 +1,7 @@
 from functions.print import spausdinam
 from functions.check import check_X, check_0, check_draw
 from random import randrange
-from functions.ai_logic import ai_turn
+from functions.ai_logic.ai_decision import ai_turn
 from time import sleep
 
 while True:
