@@ -1,0 +1,79 @@
+<StartingScreen>:
+    name: "starting"
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "background.png"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+        Label:
+            size: self.texture_size
+            text: "Welcome to Tic Tac Toe!"
+            font_size: self.width / 15
+            color: 0.6, 0.4, 0.8, 1
+        Button:
+            text: "Start Two Player Game"
+            size_hint: 1, 0.2
+            on_release: app.root.current = 'name_entry'
+        Button:
+            text: "Exit"
+            size_hint: 1, 0.2
+            on_release: app.stop()
+
+<NameEntryScreen>:
+    name: "name_entry"
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "background.png"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+        Label:
+            text: "Enter name for Player 1:"
+            font_size: self.width / 20
+            color: 0.6, 0.4, 0.8, 1
+        TextInput:
+            id: player1_name
+            multiline: False
+            hint_text: "Player 2"
+            size_hint: 1, 0.2
+        Label:
+            text: "Enter name for Player 2:"
+            font_size: self.width / 20
+            color: 0.6, 0.4, 0.8, 1
+        TextInput:
+            id: player2_name
+            multiline: False
+            hint_text: "Player 2"
+            size_hint: 1, 0.2
+        Button:
+            text: "Start Game"
+            size_hint: 1, 0.2
+            on_release:
+                app.player1_name = player1_name.text
+                app.player2_name = player2_name.text
+                app.root.current = 'two_player'
+        Button:
+            text: "Back to Main Menu"
+            size_hint: 1, 0.2
+            on_release: app.root.current = 'starting'
+        Button:
+            text: "Exit"
+            size_hint: 1, 0.2
+            on_release: app.stop()
+
+<TwoPlayerScreen>:
+    name: "two_player"
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "background.png"
+    GridLayout:
+        cols: 3

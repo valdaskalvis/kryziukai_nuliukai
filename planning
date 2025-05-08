@@ -1,0 +1,6 @@
+Screens:
+    Selection (starting) - welcome and choose the game
+    2 player game - 2 player game screen with active player (different colour?)
+    Game vs monkey - the game against „dumb AI“
+    Game vs AI - the game against smart AI
+    End - end of the game, show results, ask for play again vs back to main screen
